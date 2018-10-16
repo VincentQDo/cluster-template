@@ -40,6 +40,8 @@ for i in range(6):
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true"
+    node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
+
   elif i == 1:
     node = request.XenVM("metadata")
   elif i == 2:
@@ -63,9 +65,9 @@ for i in range(6):
   
   # This code segment is added per Benjamin Walker's solution to address the StrictHostKeyCheck issue of ssh
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo -H -u lngo bash -c '/local/repository/ssh_setup.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
  
-  node.addService(pg.Execute(shell="sh", command="sudo su lngo -c 'cp /local/repository/source/* /users/lngo'"))
+  node.addService(pg.Execute(shell="sh", command="sudo su QD899836 -c 'cp /local/repository/source/* /users/QD899836'"))
   
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
