@@ -41,7 +41,15 @@ for i in range(6):
     node = request.XenVM("head")
     node.routable_control_ip = "true"
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
-
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
+    node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
+    node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp local/repository/head_xports /etc/exports"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
+    node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
   elif i == 1:
     node = request.XenVM("metadata")
   elif i == 2:
@@ -50,6 +58,9 @@ for i in range(6):
     node = request.XenVM("compute-" + str(i-2))
     node.cores = 4
     node.ram = 4096
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
+
     
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
   
