@@ -102,6 +102,8 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo "export PATH='$PATH:/users/Js637496/software/openmpi/3.1.2/bin'" >> /users/Js637496/.bashrc"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo "export LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/users/Js637496/software/openmpi/3.1.2/lib/'" >> /users/Js637496/.bashrc"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
