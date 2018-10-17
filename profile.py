@@ -54,6 +54,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
   elif i == 1:
     node = request.XenVM("metadata")
@@ -68,7 +69,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /scratch"))
     #delete the current empty exports and copy the new exports form github
-    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_scratch.txt /etc/exports"))
+    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_scratch /etc/exports"))
     #export the NFS shares directory
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
