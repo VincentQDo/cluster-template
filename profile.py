@@ -53,10 +53,25 @@ for i in range(6):
     #export the NFS shares directory
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
   elif i == 1:
     node = request.XenVM("metadata")
   elif i == 2:
     node = request.XenVM("storage")
+    node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
+    #enable and start the nfs server service
+    node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
+    node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
+    #create the nfs directory
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /scratch"))
+    #delete the current empty exports and copy the new exports form github
+    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_scratch.txt /etc/exports"))
+    #export the NFS shares directory
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
+    node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
   else:
     node = request.XenVM("compute-" + str(i-2))
     node.cores = 4
@@ -64,6 +79,8 @@ for i in range(6):
     #create a directory to mount the nfs shares into the client
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
 
     
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
