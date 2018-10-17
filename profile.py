@@ -55,7 +55,7 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
     #script to install mpi and passwordless
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
