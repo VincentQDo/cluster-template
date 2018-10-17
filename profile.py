@@ -49,10 +49,8 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /software"))
     #delete the current empty exports and copy the new exports form github
-    node.addService(pg.Execute(shell="sh", command="sudo rm /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/xports_software.txt /etc/exports"))
-
-    #export the NFS shares direcgtory
+    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_software.txt /etc/exports"))
+    #export the NFS shares directory
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
   elif i == 1:
