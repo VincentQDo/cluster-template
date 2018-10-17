@@ -89,8 +89,6 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo echo "export PATH='$PATH:/software/openmpi/3.1.2/bin'" >> /users/QD899836/.bashrc"))
-    node.addService(pg.Execute(shell="sh", command="sudo echo "export LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/software/openmpi/3.1.2/lib/'" >> /users/QD899836/.bashrc"))
 
     
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
