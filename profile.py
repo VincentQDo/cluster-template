@@ -1,4 +1,4 @@
-#version 2.3
+#version 2.4
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -38,12 +38,12 @@ prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
 for i in range(15):
-        #code to fix the ssh problem
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true"
+                #code to fix the ssh problem
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
@@ -66,8 +66,12 @@ for i in range(15):
     
   elif i == 1:
     node = request.XenVM("metadata")
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
   elif i == 2:
     node = request.XenVM("storage")
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
@@ -86,6 +90,8 @@ for i in range(15):
     node = request.XenVM("compute-" + str(i-2))
     node.cores = 4
     node.ram = 4096
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
     #create a directory to mount the nfs shares into the client
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
