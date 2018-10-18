@@ -98,7 +98,7 @@ for i in range(15):
   iface.component_id = "eth1"
   iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
   link.addInterface(iface)
-      #code to deal with ssh issue
+      #code to fix the ssh problem
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
  
