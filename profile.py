@@ -92,6 +92,8 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
 
     
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
