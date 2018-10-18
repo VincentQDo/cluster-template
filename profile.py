@@ -1,4 +1,4 @@
-#version 1.11
+#version 2.0
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -37,7 +37,7 @@ prefixForIP = "192.168.1."
 
 link = request.LAN("lan")
 
-for i in range(6):
+for i in range(15):
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true"
