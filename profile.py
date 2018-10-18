@@ -1,4 +1,4 @@
-#version 2.2
+#version 2.3
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
