@@ -41,9 +41,6 @@ for i in range(6):
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true"
-    node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
-    node.addService(pg.Execute(shell="sh", command="sleep 5m"))
-
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
@@ -59,11 +56,10 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/source/* /scratch"))
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-    node.addService(pg.Execute(shell="sh", command="sleep 5m"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/source/* /scratch"))
     
   elif i == 1:
     node = request.XenVM("metadata")
