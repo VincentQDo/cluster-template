@@ -101,7 +101,7 @@ for i in range(15):
       #code to deal with ssh issue
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
-  # This code segment is added per Benjamin Walker's solution to address the StrictHostKeyCheck issue of ssh
+ 
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
  
