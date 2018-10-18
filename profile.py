@@ -38,6 +38,9 @@ prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
 for i in range(15):
+        #code to fix the ssh problem
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true"
@@ -98,9 +101,7 @@ for i in range(15):
   iface.component_id = "eth1"
   iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
   link.addInterface(iface)
-      #code to fix the ssh problem
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
+
  
   #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   #node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
