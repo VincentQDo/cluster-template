@@ -1,4 +1,4 @@
-#version 1.8
+#version 1.9
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -52,7 +52,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /software"))
     node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /software"))
     #delete the current empty exports and copy the new exports form github
-    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_software.txt /etc/exports"))
+    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_software /etc/exports"))
     #export the NFS shares directory
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
