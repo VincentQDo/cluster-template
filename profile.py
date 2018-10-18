@@ -41,9 +41,27 @@ for i in range(15):
   if i == 0:
     node = request.XenVM("head")
     node.routable_control_ip = "true"
-                #code to fix the ssh problem
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))  
+  elif i == 1:
+    node = request.XenVM("metadata")
+  elif i == 2:
+    node = request.XenVM("storage")
+  else:
+    node = request.XenVM("compute-" + str(i-2))
+    node.cores = 4
+    node.ram = 4096
+   
+  
+  node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+  iface = node.addInterface("if" + str(i))
+  iface.component_id = "eth1"
+  iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
+  link.addInterface(iface)
+  
+  
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
+  if i == 0:
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
@@ -58,20 +76,14 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sleep 2m"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/source/* /scratch"))
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-    
-  elif i == 1:
-    node = request.XenVM("metadata")
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
-  elif i == 2:
-    node = request.XenVM("storage")
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
+  if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo yum -y install nfs-utils"))
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
@@ -85,33 +97,24 @@ for i in range(15):
     #export the NFS shares directory
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
-
   else:
-    node = request.XenVM("compute-" + str(i-2))
-    node.cores = 4
-    node.ram = 4096
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
     #create a directory to mount the nfs shares into the client
+    node.addService(pg.Execute(shell="sh", command="sleep 26m"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.1:/software /software"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount 192.168.1.3:/scratch /scratch"))
+    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
-
-    
-  node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.1:/software /software nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.1,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
+    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
   
-  iface = node.addInterface("if" + str(i))
-  iface.component_id = "eth1"
-  iface.addAddress(pg.IPv4Address(prefixForIP + str(i + 1), "255.255.255.0"))
-  link.addInterface(iface)
+
 
  
   #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   #node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
- 
-  node.addService(pg.Execute(shell="sh", command="sudo su QD899836 -c 'cp /local/repository/source/* /users/QD899836'"))
-# Print the RSpec to the enclosing page.
+ # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
