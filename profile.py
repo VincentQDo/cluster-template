@@ -99,7 +99,7 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
     #create a directory to mount the nfs shares into the client
-    node.addService(pg.Execute(shell="sh", command="sleep 40m"))
+    node.addService(pg.Execute(shell="sh", command="sleep 20m"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
