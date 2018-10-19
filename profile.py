@@ -76,9 +76,7 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sleep 2m"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo echo '192.168.1.3:/scratch /scratch nfs4 rw,relatime,vers=4.1,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,local_lock=none,addr=192.168.1.3,_netdev,x-systemd.automount 0 0' | sudo tee --append /etc/fstab"))
     node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/source/* /scratch"))
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
@@ -101,7 +99,7 @@ for i in range(15):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
     #create a directory to mount the nfs shares into the client
-    node.addService(pg.Execute(shell="sh", command="sleep 26m"))
+    node.addService(pg.Execute(shell="sh", command="sleep 40m"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
