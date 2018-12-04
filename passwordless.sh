@@ -14,16 +14,9 @@ set -x
 ##
 
 #
-# Get current user
-#
-echo $USER
-
-
-#
 # A simple configuration for the root user.  Change USER, HOMEDIR, and
 # KEYNAME as desired.
 #
-
 USER=root
 HOMEDIR=/root
 KEYNAME=id_rsa
@@ -89,15 +82,15 @@ touch $SSHDIR/authorized_keys
 cat $PUBKEY >> $SSHDIR/authorized_keys
 chmod 600 $SSHDIR/authorized_keys
 
-CUSTOM_USER="QD899836"
-CUSTOM_SSHDIR=/users/$CUSTOM_USER}/.ssh
+
+CUSTOM_USER=QD899836
+CUSTOM_SSHDIR=/users/QD899836/.ssh
 CUSTOM_GROUP=`id -gn ${CUSTOM_USER}`
 
 cp $PRIVKEY ${CUSTOM_SSHDIR}
 cp $PUBKEY ${CUSTOM_SSHDIR}
 cat $PUBKEY >> ${CUSTOM_SSHDIR}/authorized_keys
 chown -R ${CUSTOM_USER}:${CUSTOM_GROUP} ${CUSTOM_SSHDIR}
-su ${CUSTOM_USER} -c 'touch ${CUSTOM_SSHDIR}/config'
-su ${CUSTOM_USER} -c 'echo "StrictHostKeyChecking no" > ${CUSTOM_SSHDIR}/config'
-
+sudo touch /users/QD899836/.ssh/config
+sudo echo "StrictHostKeyChecking no" | sudo tee --append /users/QD899836/.ssh/config
 exit 0
