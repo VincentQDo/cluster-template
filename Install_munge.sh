@@ -12,9 +12,3 @@ sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g 
 
 sudo yum install epel-release
 sudo yum install munge munge-libs munge-devel -y
-
-/usr/sbin/create-munge-key 
-
-sudo bash -c "echo "foo" > /etc/munge/munge.key"
-chown munge: /etc/munge/munge.key
-sudo chmod 700 /etc/munge/munge.key 
