@@ -1,6 +1,6 @@
 
 #!/bin/bash 
-set -x
+set -x 
 
 #create global users
 export MUNGEUSER=991
@@ -10,7 +10,11 @@ export SLURMUSER=992
 sudo groupadd -g $SLURMUSER slurm
 sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm
 
-yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad -y
+sudo yum install epel-release
+sudo yum install munge munge-libs munge-devel -y
 
-cd /software
-wget https://download.schedmd.com/slurm/slurm-18.08.3.tar.bz2
+/usr/sbin/create-munge-key 
+
+sudo bash -c "echo "foo" > /etc/munge/munge.key"
+chown munge: /etc/munge/munge.key
+sudo chmod 700 /etc/munge/munge.key 
