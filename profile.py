@@ -1,4 +1,4 @@
-#version 2.8
+#version 2.9
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -111,7 +111,10 @@ for i in range(6):
  
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/Installslurm.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/Install_munge.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/Install_munge.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/create_secretkey.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/create_secretkey.sh'"))
   
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
