@@ -1,4 +1,4 @@
-#version 3.0
+#version 2.8
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -81,29 +81,6 @@ for i in range(6):
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-    
-    #install munge
-    node.addService(pg.Execute(shell="sh", command="sudo yum remove mariadb-server mariadb-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum remove slurm munge munge-libs munge-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum install mariadb-server mariadb-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="export MUNGEUSER=991"))
-    node.addService(pg.Execute(shell="sh", command="sudo groupadd -g $MUNGEUSER munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo useradd  -m -c "MUNGE Uid 'N' Gid Emporium" -d /var/lib/munge -u $MUNGEUSER -g munge  -s /sbin/nologin munge"))
-    node.addService(pg.Execute(shell="sh", command="export SLURMUSER=992"))
-    node.addService(pg.Execute(shell="sh", command="sudo groupadd -g $SLURMUSER slurm"))
-    node.addService(pg.Execute(shell="sh", command="sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum install epel-release"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum install munge munge-libs munge-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'"))
-    node.addService(pg.Execute(shell="sh", command="sudo chown munge: /etc/munge/munge.key"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 400 /etc/munge/munge.key"))
-    node.addService(pg.Execute(shell="sh", command="sudo scp /etc/munge/munge.key compute-1:/etc/munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo scp /etc/munge/munge.key compute-2:/etc/munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo scp /etc/munge/munge.key compute-3:/etc/munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo chown -R munge: /etc/munge/ /var/log/munge/"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 0700 /etc/munge/ /var/log/munge/"))
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl enable munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl start munge"))
   if i == 2:
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
@@ -128,22 +105,10 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
-        #install munge
-    node.addService(pg.Execute(shell="sh", command="sudo yum remove mariadb-server mariadb-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum remove slurm munge munge-libs munge-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum install mariadb-server mariadb-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="export MUNGEUSER=991"))
-    node.addService(pg.Execute(shell="sh", command="sudo groupadd -g $MUNGEUSER munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo useradd  -m -c "MUNGE Uid 'N' Gid Emporium" -d /var/lib/munge -u $MUNGEUSER -g munge  -s /sbin/nologin munge"))
-    node.addService(pg.Execute(shell="sh", command="export SLURMUSER=992"))
-    node.addService(pg.Execute(shell="sh", command="sudo groupadd -g $SLURMUSER slurm"))
-    node.addService(pg.Execute(shell="sh", command="sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum install epel-release"))
-    node.addService(pg.Execute(shell="sh", command="sudo yum install munge munge-libs munge-devel -y"))
-    node.addService(pg.Execute(shell="sh", command="sudo chown -R munge: /etc/munge/ /var/log/munge/"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 0700 /etc/munge/ /var/log/munge/"))
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl enable munge"))
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl start munge"))
+  
+
+
+ 
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
  # Print the RSpec to the enclosing page.
