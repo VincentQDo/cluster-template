@@ -1,6 +1,6 @@
 #!/bin/bash 
 set -x 
-#generate s pseudo munge key
+#generate a munge key
 /usr/sbin/create-munge-key -f
 #make the group own the key file
 chown -R munge:munge /etc/munge/munge.key
