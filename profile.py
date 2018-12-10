@@ -119,6 +119,8 @@ for i in range(6):
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_oncomp.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh'"))
-  
+    
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/start_munge.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/start_munge.sh'"))
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
