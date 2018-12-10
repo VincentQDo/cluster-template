@@ -81,8 +81,7 @@ for i in range(6):
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/create_secretkey.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/create_secretkey.sh'"))
+
   if i == 2:
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
@@ -105,14 +104,21 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
+
   
 
 
- 
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/Install_munge.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/Install_munge.sh'"))
+  
+  if i == 0:    
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_onhead.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_onhead.sh'"))
+  else:
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_oncomp.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh'"))
   
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
