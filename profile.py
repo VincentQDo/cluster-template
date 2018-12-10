@@ -110,8 +110,8 @@ for i in range(6):
 
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/Install_munge.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/Install_munge.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
   
   if i == 0:    
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_onhead.sh"))
