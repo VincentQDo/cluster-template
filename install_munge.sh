@@ -12,4 +12,5 @@ sudo groupadd -g $SLURMUSER slurm
 sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm
 
 sudo yum install epel-release -y
+#not sure why line 16 does not execute
 sudo yum install munge munge-libs munge-devel -y
