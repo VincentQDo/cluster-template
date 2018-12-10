@@ -1,4 +1,4 @@
-#version 2.11
+#version 2.12
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -112,15 +112,25 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
-  
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
   if i == 0:    
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_onhead.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_onhead.sh'"))
+    #download slurm into the shared folder for all to access
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/download_slurm.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/download_slurm.sh'"))
+    #move the rpms files into
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/create_rpmbuild.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/create_rpmbuild.sh'"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_oncomp.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh'"))
     
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/start_munge.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/start_munge.sh'"))
+  #after we got the rpm installs, slurm should be installed
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_rpms.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_rpms.sh'"))
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
