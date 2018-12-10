@@ -15,4 +15,4 @@ mkdir /scratch/slurm-rpms
 #copy everything from rpmbuild to the shared folder
 sudo cp /root/rpmbuild/RPMS/x86_64/* /scratch/slurm-rpms/
 #not sure why this command does not work, it cannot open the rpm files
-yum --nogpgcheck localinstall slurm-15.08.9-1.el7.centos.x86_64.rpm slurm-devel-15.08.9-1.el7.centos.x86_64.rpm slurm-munge-15.08.9-1.el7.centos.x86_64.rpm slurm-perlapi-15.08.9-1.el7.centos.x86_64.rpm slurm-plugins-15.08.9-1.el7.centos.x86_64.rpm slurm-sjobexit-15.08.9-1.el7.centos.x86_64.rpm slurm-sjstat-15.08.9-1.el7.centos.x86_64.rpm slurm-torque-15.08.9-1.el7.centos.x86_64.rpm
+yum --nogpgcheck localinstall slurm-18.08.3-1.el7.x86_64.rpm slurm-example-configs-18.08.3-1.el7.x86_64.rpm  slurm-pam_slurm-18.08.3-1.el7.x86_64.rpm  slurm-slurmd-18.08.3-1.el7.x86_64.rpm slurm-contribs-18.08.3-1.el7.x86_64.rpm  slurm-libpmi-18.08.3-1.el7.x86_64.rpm  slurm-perlapi-18.08.3-1.el7.x86_64.rpm slurm-slurmdbd-18.08.3-1.el7.x86_64.rpm slurm-devel-18.08.3-1.el7.x86_64.rpm slurm-openlava-18.08.3-1.el7.x86_64.rpm  slurm-slurmctld-18.08.3-1.el7.x86_64.rpm  slurm-torque-18.08.3-1.el7.x86_64.rpm -y
