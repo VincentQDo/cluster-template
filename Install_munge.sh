@@ -1,7 +1,8 @@
 
 #!/bin/bash 
 set -x 
-
+#install mariadb
+sudo yum install mariadb-server mariadb-devel -y
 #create global users
 export MUNGEUSER=991
 sudo groupadd -g $MUNGEUSER munge
