@@ -1,4 +1,4 @@
-#version 2.12
+#version 2.13
 # Import the Portal object.
 import geni.portal as portal
 # Import the ProtoGENI library.
@@ -81,7 +81,11 @@ for i in range(6):
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-
+    #install munge and download slurm dependencies
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
   if i == 2:
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
@@ -95,6 +99,10 @@ for i in range(6):
     #export the NFS shares directory
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
   else:
     #create a directory to mount the nfs shares into the client
     node.addService(pg.Execute(shell="sh", command="sleep 20m"))
@@ -104,16 +112,21 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
 
   
 
 
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
+  #uncomments the bellow lines before final draft
+  #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
+  #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+  #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
+  #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
   if i == 0:    
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_onhead.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_onhead.sh'"))
