@@ -122,9 +122,9 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh"))
   if i == 0:    
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_onhead.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_onhead.sh"))
@@ -134,6 +134,11 @@ for i in range(6):
     #move the rpms files into
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/create_rpmbuild.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/create_rpmbuild.sh"))
+  if i == 1:
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_oncomp.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh"))
+    node.addService(pg.Execute(shell="sh", command="sleep 120"))
+    node.addService(pg.Execute(shell="sh", command="sudo touch /scratch/meta.done"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_oncomp.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh"))
@@ -149,7 +154,12 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/head_conf.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable slurmctld.service"))
     node.addService(pg.Execute(shell="sh", command="sudo systemctl start slurmctld.service"))
-
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/restart_slurmctld.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/restart_slurmctld.sh"))
+  
+  if i == 1:    
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/meta_conf.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/meta_conf.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/compute_conf.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/compute_conf.sh"))
