@@ -81,9 +81,10 @@ for i in range(6):
     #script to install mpi
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-    #install munge and download slurm dependencies
+    #install munge, this line is not working as intended
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    #install the slurm dependencies, may not work as intended
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
   if i == 2:
@@ -122,7 +123,7 @@ for i in range(6):
 
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
-  #uncomments the bellow lines before final draft
+  #The lines bellow does not execute the commands inside it correctly not sure why
   #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
   #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
   #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
