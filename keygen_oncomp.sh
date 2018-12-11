@@ -1,5 +1,9 @@
 #!/bin/bash 
 set -x 
+while [ ! -f /scratch/munge.key ]
+do
+  sleep 5
+done
 #copy the key file from shared folder down to local folder
 sudo cp /scratch/munge.key /etc/munge/
 #change ownership of directory
