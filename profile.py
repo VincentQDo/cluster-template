@@ -106,7 +106,7 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh"))
   else:
     #create a directory to mount the nfs shares into the client
-    node.addService(pg.Execute(shell="sh", command="sleep 20m"))
+    node.addService(pg.Execute(shell="sh", command="sleep 70m"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
     node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
