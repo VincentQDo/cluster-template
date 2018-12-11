@@ -6,3 +6,5 @@ sudo rpmbuild -ta /scratch/slurm-18.08.3.tar.bz2
 mkdir /scratch/slurm-rpms
 #copy everything from rpmbuild to the shared folder
 sudo cp /root/rpmbuild/RPMS/x86_64/* /scratch/slurm-rpms/
+#create a flag to let others know that rpm is done building
+sudo touch sudo touch /scratch/rpm.done
