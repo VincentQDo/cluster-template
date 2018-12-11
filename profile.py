@@ -83,10 +83,10 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
     #install munge, this line is not working as intended
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh"))
     #install the slurm dependencies, may not work as intended
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh"))
   if i == 2:
     #enable and start the nfs server service
     node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
@@ -101,9 +101,9 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
     node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh"))
   else:
     #create a directory to mount the nfs shares into the client
     node.addService(pg.Execute(shell="sh", command="sleep 20m"))
@@ -114,9 +114,9 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_munge.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_munge.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurm_dependencies.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh"))
 
   
 
@@ -130,21 +130,21 @@ for i in range(6):
   #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurm_dependencies.sh'"))
   if i == 0:    
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_onhead.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_onhead.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_onhead.sh"))
     #download slurm into the shared folder for all to access
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/download_slurm.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/download_slurm.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/download_slurm.sh"))
     #move the rpms files into
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/create_rpmbuild.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/create_rpmbuild.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/create_rpmbuild.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/keygen_oncomp.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/keygen_oncomp.sh"))
     
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/start_munge.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/start_munge.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/start_munge.sh"))
   #after we got the rpm installs, slurm should be installed
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_rpms.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_rpms.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_rpms.sh"))
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
