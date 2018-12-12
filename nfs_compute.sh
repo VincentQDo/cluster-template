@@ -1,3 +1,7 @@
+while [ ! -f /local/repository/head.done ]
+do
+  sleep 5
+done
 sudo mkdir /software
 sudo mount -t nfs 192.168.1.1:/software /software
 sudo mkdir /scratch
