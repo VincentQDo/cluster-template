@@ -1,7 +1,16 @@
-sleep 20m
 sudo mkdir /software
-sudo mount -t nfs 192.168.1.1:/software /software
+while [ ! -f /software/head.done ]
+do
+  sleep 5
+  sudo mount -t nfs 192.168.1.1:/software /software
+done
+
 sudo mkdir /scratch
-sudo mount -t nfs 192.168.1.3:/scratch /scratch
+while [ ! -f /software/head.done ]
+do
+  sleep 5
+  sudo mount -t nfs 192.168.1.3:/scratch /scratch
+done
+
 sudo chmod 755 /local/repository/default_path.sh
 sudo /local/repository/default_path.sh
