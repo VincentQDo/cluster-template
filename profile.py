@@ -121,10 +121,16 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
 
   
-
-
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
+  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/everynode_setup.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/everynode_setup.sh"))
+  if i == 0:
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmhead_setup.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmhead_setup.sh"))
+  if i == 1:
+  else:
+
 
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
