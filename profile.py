@@ -62,47 +62,10 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
   if i == 0:
-    #enable and start the nfs server service
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
-    #create the nfs directory
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /software"))
-    #delete the current empty exports and copy the new exports form github
-    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_software /etc/exports"))
-    #export the NFS shares directory
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo cp /local/repository/source/* /scratch"))
     #script to install mpi
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-  if i == 1:
-    node.addService(pg.Execute(shell="sh", command="sleep 20m"))
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
   if i == 2:
-    #enable and start the nfs server service
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl enable nfs-server.service"))
-    node.addService(pg.Execute(shell="sh", command="sudo systemctl start nfs-server.service"))
-    #create the nfs directory
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod -R 777 /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chown nfsnobody:nfsnobody /scratch"))
-    #delete the current empty exports and copy the new exports form github
-    node.addService(pg.Execute(shell="sh", command="sudo mv /local/repository/xport_scratch /etc/exports"))
-    #export the NFS shares directory
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 777 /etc/exports"))
-    node.addService(pg.Execute(shell="sh", command="sudo exportfs -a"))
-    
     #107-112 are creditted to js637496
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurm.conf /scratch/'"))
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/source/* /scratch'"))
@@ -111,27 +74,8 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/hellobatch.sh /scratch/hellobatch.sh'"))
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/pibatch.sh /scratch/pibatch.sh'"))
   else:
-    #create a directory to mount the nfs shares into the client
-    node.addService(pg.Execute(shell="sh", command="sleep 20m"))
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.1:/software /software"))
-    node.addService(pg.Execute(shell="sh", command="sudo mkdir /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo mount -t nfs 192.168.1.3:/scratch /scratch"))
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/default_path.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/default_path.sh"))
-
-  
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/everynode_setup.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/everynode_setup.sh"))
-  if i == 0:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmhead_setup.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmhead_setup.sh"))
-  else:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmcompute_setup.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmcompute_setup.sh"))
-
 
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
