@@ -27,6 +27,10 @@ sudo touch /scratch/rpm.done
 #install everything in the slurm-rpms folder
 sudo yum --nogpgcheck localinstall /scratch/slurm-rpms/* -y
 
+while [ ! -f /scratch/slurm.conf ]
+do
+  sleep 10
+done
 sudo cp /scratch/slurm.conf /etc/slurm/
 sudo mkdir /var/spool/slurmctld
 sudo chown slurm: /var/spool/slurmctld
