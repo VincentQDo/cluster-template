@@ -1,4 +1,3 @@
-sudo yum install mariadb-server mariadb-devel -y
 #condition inside while loop is creditted to js637496
 while [ ! -f /scratch/munge.key ]
 do
