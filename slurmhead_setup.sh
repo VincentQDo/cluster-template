@@ -25,7 +25,7 @@ sudo cp /root/rpmbuild/RPMS/x86_64/* /scratch/slurm-rpms/
 #create a flag to let others know that rpm is done building
 sudo touch /scratch/rpm.done
 #install everything in the slurm-rpms folder
-sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
+sudo yum --nogpgcheck localinstall /scratch/slurm-rpms/* -y
 
 sudo cp /scratch/slurm.conf /etc/slurm/slurm.conf
 sudo mkdir /var/spool/slurmctld
