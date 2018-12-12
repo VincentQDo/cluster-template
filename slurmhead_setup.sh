@@ -35,3 +35,6 @@ sudo touch /var/log/slurmctld.log
 sudo chown slurm: /var/log/slurmctld.log
 sudo touch /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
 sudo chown slurm: /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
+
+sudo systemctl enable slurmctld.service
+sudo systemctl start slurmctld.service
