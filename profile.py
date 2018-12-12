@@ -61,30 +61,30 @@ for i in range(15):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
-  if i == 0:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_head.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_head.sh"))   
+  #if i == 0:
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_head.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_head.sh"))   
     #script to install mpi
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
-  if i == 2:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_storage.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_storage.sh")) 
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/copyfilestolocal.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/copyfilestolocal.sh")) 
-  else:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_compute.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_compute.sh"))   
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
+  #if i == 2:
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_storage.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_storage.sh")) 
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/copyfilestolocal.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/copyfilestolocal.sh")) 
+  #else:
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_compute.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_compute.sh"))   
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
-  node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/everynode_setup.sh"))
-  node.addService(pg.Execute(shell="sh", command="sudo /local/repository/everynode_setup.sh"))  
-  if i == 0:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmhead_setup.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmhead_setup.sh"))
-  else:
-    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmcompute_setup.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmcompute_setup.sh"))
+  #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/everynode_setup.sh"))
+  #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/everynode_setup.sh"))  
+  #if i == 0:
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmhead_setup.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmhead_setup.sh"))
+  #else:
+    #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmcompute_setup.sh"))
+    #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmcompute_setup.sh"))
 
  # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
