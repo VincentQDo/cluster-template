@@ -1,3 +1,4 @@
+sleep 20m
 sudo mkdir /software
 sudo mount -t nfs 192.168.1.1:/software /software
 sudo mkdir /scratch
