@@ -1,4 +1,3 @@
-#condition inside while loop is creditted to js637496
 while [ ! -f /scratch/munge.key ]
 do
   sleep 5
