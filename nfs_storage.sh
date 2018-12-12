@@ -6,3 +6,4 @@ sudo chown nfsnobody:nfsnobody /scratch
 sudo mv /local/repository/xport_scratch /etc/exports
 sudo chmod 777 /etc/exports
 sudo exportfs -a
+sudo touch /scratch/storage.done
