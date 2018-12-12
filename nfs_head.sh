@@ -7,13 +7,8 @@ sudo mv /local/repository/xport_software /etc/exports
 sudo chmod 777 /etc/exports
 sudo exportfs -a
 
-while [ ! -f /local/repository/storage.done ]
-do
-  sleep 5
-done
 sudo mkdir /scratch
 sudo chmod -R 777 /scratch
 sudo mount -t nfs 192.168.1.3:/scratch /scratch
 sudo cp /local/repository/source/* /scratch
 
-sudo touch /local/repository/nfs.done
