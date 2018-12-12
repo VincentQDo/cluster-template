@@ -20,7 +20,7 @@ done
 #install everything in the slurm-rpms folder, the * means everything
 sudo yum --nogpgcheck localinstall /scratch/slurm-rpms/* -y
 
-
+#24-67 creditted to js637496
 sudo cp /scratch/slurm.conf /etc/slurm/slurm.conf
 sudo cp /scratch/slurmdbd.conf /etc/slurm/slurmdbd.conf
 sudo mkdir /var/spool/slurmdbd
