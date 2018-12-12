@@ -1,4 +1,5 @@
 sudo mkdir /scratch
+#the while loop is to check if the storage.done flag is present. This flag is present when the storage node is finished setting up the nfs folder /scratch. if it is not present then keep trying to mount the folder until it does.
 while [ ! -f /scratch/storage.done ]
 do
   sleep 5
@@ -6,6 +7,7 @@ do
 done
 
 sudo mkdir /software
+#same with the loop above
 while [ ! -f /software/head.done ]
 do
   sleep 5
