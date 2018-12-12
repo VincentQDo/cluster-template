@@ -27,5 +27,9 @@ sudo chmod 755 /var/spool/slurmd
 sudo touch /var/log/slurmd.log
 sudo chown slurm: /var/log/slurmd.log
 
+while [ ! -f /scratch/metadb.done ]
+do
+  sleep 5
+done
 sudo systemctl enable slurmd
 sudo systemctl start slurmd
