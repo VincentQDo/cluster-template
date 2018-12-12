@@ -128,7 +128,6 @@ for i in range(6):
   if i == 0:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmhead_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmhead_setup.sh"))
-  if i == 1:
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmcompute_setup.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmcompute_setup.sh"))
