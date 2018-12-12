@@ -130,6 +130,8 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmhead_setup.sh"))
   if i == 1:
   else:
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/slurmcompute_setup.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/slurmcompute_setup.sh"))
 
 
  # Print the RSpec to the enclosing page.
