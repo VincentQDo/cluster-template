@@ -20,7 +20,7 @@ do
   sleep 10
 done
 #install everything in the slurm-rpms folder, the * means everything
-sudo yum --nogpgcheck localinstall /software/slurm-rpms/* -y
+sudo yum --nogpgcheck localinstall /scratch/slurm-rpms/* -y
 
 sudo cp /scratch/slurm.conf /etc/slurm/slurm.conf
 sudo mkdir /var/spool/slurmd
