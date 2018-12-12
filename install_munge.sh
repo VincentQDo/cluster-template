@@ -1,6 +1,5 @@
 #1.1
 #!/bin/bash 
-set -x 
 #install mariadb
 sudo yum install mariadb-server mariadb-devel -y
 #create global users
@@ -12,5 +11,6 @@ sudo groupadd -g $SLURMUSER slurm
 sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u $SLURMUSER -g slurm  -s /bin/bash slurm
 
 sudo yum install epel-release -y
-#not sure why line 16 does not execute
 sudo yum install munge munge-libs munge-devel -y
+sudo yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad -y
+sudo yum install ntp -y
