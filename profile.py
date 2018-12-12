@@ -73,10 +73,10 @@ for i in range(6):
     #107-112 are creditted to js637496
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurm.conf /scratch/'"))
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/source/* /scratch'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurm.conf /scratch/slurm.conf'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurmdbd.conf /scratch/slurmdbd.conf'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/hellobatch.sh /scratch/hellobatch.sh'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/pibatch.sh /scratch/pibatch.sh'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurm.conf /scratch/'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurmdbd.conf /scratch/'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/hellobatch.sh /scratch/'"))
+    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/pibatch.sh /scratch/'"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_compute.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_compute.sh"))   
