@@ -1,4 +1,4 @@
-while [ ! -f /local/repository/head.done ]
+while [ ! -f /local/repository/nfs.done ]
 do
   sleep 5
 done
