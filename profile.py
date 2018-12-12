@@ -61,7 +61,6 @@ for i in range(6):
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo /local/repository/passwordless.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo systemctl disable firewalld"))
-  if i == 0:
     #script to install mpi
     #node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/install_mpi.sh"))
     #node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
@@ -73,7 +72,6 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurmdbd.conf /scratch/slurmdbd.conf'"))
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/hellobatch.sh /scratch/hellobatch.sh'"))
     node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/pibatch.sh /scratch/pibatch.sh'"))
-  else:
   node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/ssh_setup.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo -H -u QD899836 bash -c '/local/repository/ssh_setup.sh'"))
 
