@@ -42,3 +42,13 @@ sudo chown slurm: /var/log/slurm_jobacct.log /var/log/slurm_jobcomp.log
 
 sudo systemctl enable slurmctld
 sudo systemctl start slurmctld
+
+sudo touch /scratch/head.done
+
+while [ ! -f /scratch/cluster.done ]
+do
+  sleep 5
+done
+
+#restart slurmctld daemon
+sudo systemctl restart slurmctld
