@@ -69,14 +69,9 @@ for i in range(6):
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/install_mpi.sh"))
   if i == 2:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_storage.sh"))
-    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_storage.sh"))   
-    #107-112 are creditted to js637496
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurm.conf /scratch/'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/source/* /scratch'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurm.conf /scratch/'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/slurmdbd.conf /scratch/'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/hellobatch.sh /scratch/'"))
-    node.addService(pg.Execute(shell="sh", command="sudo su -c 'cp /local/repository/pibatch.sh /scratch/'"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_storage.sh")) 
+    node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/copyfilestolocal.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /local/repository/copyfilestolocal.sh")) 
   else:
     node.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/nfs_compute.sh"))
     node.addService(pg.Execute(shell="sh", command="sudo /local/repository/nfs_compute.sh"))   
