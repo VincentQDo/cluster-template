@@ -11,4 +11,4 @@ sudo mkdir /scratch
 sudo chmod -R 777 /scratch
 sudo mount -t nfs 192.168.1.3:/scratch /scratch
 sudo cp /local/repository/source/* /scratch
-
+sudo touch /software/head.done
