@@ -1,5 +1,5 @@
-sudo systemctl enable nfs-server.service"))
-sudo systemctl start nfs-server.service"))
+sudo systemctl enable nfs-server.service
+sudo systemctl start nfs-server.service
 sudo mkdir /software
 sudo chmod -R 777 /software
 sudo chown nfsnobody:nfsnobody /software
