@@ -29,5 +29,5 @@ sudo chmod 755 /var/spool/slurmd
 sudo touch /var/log/slurmd.log
 sudo chown slurm: /var/log/slurmd.log
 
-sudo systemctl enable slurmd
-sudo systemctl start slurmd
+sudo systemctl enable slurmd.service
+sudo systemctl start slurmd.service
