@@ -1,4 +1,4 @@
-mpicc hello.c -lm
+mpicc hello.c
 mkdir helloresults
 sbatch -N 1 /local/repository/batch_scripts/hi1.sh
 sbatch -N 2 /local/repository/batch_scripts/hi2.sh
