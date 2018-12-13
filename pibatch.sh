@@ -1,4 +1,3 @@
-mpicc pi_mc.c -lm
 sbatch -N 2 /local/repository/batch_scripts/2.sh
 #sbatch -N 4 /local/repository/batch_scripts/4.sh
 #sbatch -N 6 /local/repository/batch_scripts/6.sh
